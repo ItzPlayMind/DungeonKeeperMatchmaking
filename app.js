@@ -9,7 +9,7 @@ const uid = function(){
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
-setInterval(()=>{
+/*setInterval(()=>{
     const keys = Object.keys(lobbies);
     keys.forEach(x=>{
         const lobby = lobbies[x];
@@ -18,7 +18,7 @@ setInterval(()=>{
             delete lobbies[x];
         }
     });
-},5*1000);
+},5*1000);*/
 
 app.use(express.json());
 
