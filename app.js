@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000;
 
-const lobbies = [];
+const lobbies = {};
 const lobbyMaxTime = 60*60*1000;
 
 const uid = function(){
@@ -23,7 +23,7 @@ const uid = function(){
 app.use(express.json());
 
 app.get('/lobby', (req, res) => {
-    if(lobbies.length <= 0)
+    if(Object.keys(lobbies).length <= 0)
     {
         res.sendStatus(404);
         return;
@@ -31,8 +31,7 @@ app.get('/lobby', (req, res) => {
     const id = Object.keys(lobbies)[0];
     const lobby = lobbies[id];
     console.log("Sending lobby " + JSON.stringify(lobby));
-    res.status = 200;
-    res.send(lobby);
+    res.status(200).send(lobby);
 })
 
 app.post('/lobby', (req, res) => {
@@ -48,8 +47,7 @@ app.post('/lobby', (req, res) => {
         time: Date.now()
     };
     console.log("Created new lobby " + JSON.stringify(lobbies[id]));
-    res.status = 200;
-    res.send(id);
+    res.status(200).send(id);
 })
 
 app.delete('/lobby', (req, res) => {
