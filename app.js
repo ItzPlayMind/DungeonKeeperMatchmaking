@@ -23,12 +23,14 @@ const uid = function(){
 app.use(express.json());
 
 app.get('/lobby', (req, res) => {
+    let id = req.query.id;
     if(Object.keys(lobbies).length <= 0)
     {
         res.sendStatus(404);
         return;
     }
-    const id = Object.keys(lobbies)[0];
+    if(!id || !lobbies[id])
+        id = Object.keys(lobbies)[0];
     const lobby = lobbies[id];
     console.log("Sending lobby " + JSON.stringify(lobby));
     res.status(200).send(lobby);
