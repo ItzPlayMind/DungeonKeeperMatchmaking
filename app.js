@@ -9,17 +9,6 @@ const uid = function(){
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
-/*setInterval(()=>{
-    const keys = Object.keys(lobbies);
-    keys.forEach(x=>{
-        const lobby = lobbies[x];
-        if(Date.now() > lobby.time + lobbyMaxTime){
-            console.log("Deleted " + lobbies[x] + ", time over");
-            delete lobbies[x];
-        }
-    });
-},5*1000);*/
-
 app.use(express.json());
 
 app.get('/lobby', (req, res) => {
@@ -46,6 +35,7 @@ app.post('/lobby', (req, res) => {
     const id = uid();
     lobbies[id] = {
         ...req.body,
+        id: id,
         time: Date.now()
     };
     console.log("Created new lobby " + JSON.stringify(lobbies[id]));
