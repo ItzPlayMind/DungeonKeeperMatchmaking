@@ -50,13 +50,16 @@ app.post("/check-port", async (req, res) => {
 
 app.get('/lobby', (req, res) => {
     let id = req.query.id;
+    if(!id)
+    {
+        res.sendStatus(400);
+        return;
+    }
     if(Object.keys(lobbies).length <= 0)
     {
         res.sendStatus(404);
         return;
     }
-    if(!id || !lobbies[id])
-        id = Object.keys(lobbies)[0];
     const {address,port} = lobbies[id];
     const dto = {
         id: id,
