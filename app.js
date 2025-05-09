@@ -1,6 +1,7 @@
 const express = require('express');
 const net = require("net");
 const crypto = require("crypto");
+const characters = require("./characters.json");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -47,6 +48,10 @@ app.post("/check-port", async (req, res) => {
 
     socket.connect(port, address);
 });
+
+app.get('/characters', (req, res) => {
+    res.status(200).send(characters);
+})
 
 app.get('/lobby', (req, res) => {
     let id = req.query.id;
