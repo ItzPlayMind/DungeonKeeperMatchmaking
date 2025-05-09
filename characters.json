@@ -1,4 +1,4 @@
-[
+{"characters":[
     {"id": 0, "enabled": true},
     {"id": 1, "enabled": true},
     {"id": 2, "enabled": true},
@@ -17,4 +17,4 @@
     {"id": 15, "enabled": true},
     {"id": 16, "enabled": true},
     {"id": 17, "enabled": false}
-]
+]}
